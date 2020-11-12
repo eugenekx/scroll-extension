@@ -1,0 +1,13 @@
+.sh-maincontainer {
+    width: 300px;
+    height: 400px;
+}
+
+.sh-table {
+    padding: 20px;
+}
+
+.sh-table__row {
+    display: flex;
+    justify-content: space-between;
+}

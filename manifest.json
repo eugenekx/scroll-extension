@@ -1,0 +1,29 @@
+{
+    "name": "Scroll Demo",
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+        "matches": ["*://*/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+        },
+        {
+            "matches": ["*://*/*"],
+            "js": ["zenscroll-min.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "version": "1.0",
+    "description": "",
+    "manifest_version": 2
+}
