@@ -19,3 +19,41 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                   storageChange.newValue);
     }
 });*/
+
+let data = [];
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    switch (request.command) {
+    case "getData":
+      sendResponse({ data });
+      break;
+    case "addPoint":
+      // Назначение ID
+      let point = request.point;
+      point.id = data.length;
+
+      data.push(request.point);
+      sendResponse({ data });
+      break;
+    case "clearData":
+      data = [];
+      break;
+
+    case "updateData":
+      data.forEach((item, i) => {
+        if (typeof request.points[i].time !== 'undefined') {
+          item.time = request.points[i].time;
+        }
+
+        if (typeof request.points[i].speed !== 'undefined') {
+          item.speed = request.points[i].speed;
+        }
+      })
+    break;
+    }
+  });
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    data = [];
+});

@@ -1,13 +1,43 @@
 .sh-maincontainer {
-    width: 300px;
-    height: 400px;
+    font-family: 'Montserrat';
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    font-weight: 400;
+}
+
+.sh-heading {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .sh-table {
-    padding: 20px;
+    width: 100%;
+}
+
+.sh-table__head {
+    font-weight: 600;
 }
 
 .sh-table__row {
-    display: flex;
-    justify-content: space-between;
+    height: 45px;
+}
+
+
+#sh-add-btn {
+    margin-left: 2px;
+    margin-bottom: 10px;
+    padding: 0;
+    outline: none;
+    background: #000; 
+    color:#fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 100px;
+    border: 3px solid white; 
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
 }
