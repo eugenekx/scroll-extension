@@ -14,6 +14,8 @@ chrome.runtime.onMessage.addListener(
         }    
 });
 
+let i = 0;
+
 function sh__showPoints(points) {
     sh__erasePoints();
 
@@ -50,11 +52,12 @@ function sh__playAnimation() {
         sh__closePopup();
         sh__erasePoints();
 
+        window.addEventListener('keyup', sh__processInput);
+/*
         window.scrollTo({ top: data[0].scroll, behavior: 'instant' });
         time += parseInt(data[0].time, 10);
 
         let st = Date.now();
-        console.log("start " + time);
         setTimeout(() => { 
             console.log(Date.now() - st);
             console.log(data[1].scroll);
@@ -79,10 +82,25 @@ function sh__playAnimation() {
                 });
                 //zenscroll.toY(parseInt(data[i+1].scroll, 10), parseInt(data[i-1].speed, 10)) 
             }, time);
-        }
+        }*/
     })
+}
 
-    
+function sh__processInput(e) {
+    if (e.code === 'ShiftLeft') {
+        sh__getPoints((response) => {
+            if (i < response.data.length) {
+                window.scrollTo({
+                    top: parseInt(response.data[i].scroll, 10),
+                    behavior: "smooth"
+                });
+                i++;
+            } else {
+                i = 0;
+                $(window).off('keyup', sh__processInput);
+            }
+        });
+    }
 }
 
 function sh__closePopup() {
