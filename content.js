@@ -58,7 +58,11 @@ function sh__playAnimation() {
         setTimeout(() => { 
             console.log(Date.now() - st);
             console.log(data[1].scroll);
-            zenscroll.toY(parseInt(data[1].scroll, 10), parseInt(data[0].speed, 10)) 
+            window.scrollTo({
+                top: parseInt(data[1].scroll, 10),
+                behavior: "smooth"
+            });
+            //zenscroll.toY(parseInt(data[1].scroll, 10), parseInt(data[0].speed, 10)) 
         }, time);
 
         for (let i = 1; i < data.length - 1; i++) {
@@ -69,7 +73,11 @@ function sh__playAnimation() {
             setTimeout(() => { 
                 console.log(Date.now() - st);
                 console.log(data[i].scroll);
-                zenscroll.toY(parseInt(data[i+1].scroll, 10), parseInt(data[i-1].speed, 10)) 
+                window.scrollTo({
+                    top: parseInt(data[i+1].scroll, 10),
+                    behavior: "smooth"
+                });
+                //zenscroll.toY(parseInt(data[i+1].scroll, 10), parseInt(data[i-1].speed, 10)) 
             }, time);
         }
     })
